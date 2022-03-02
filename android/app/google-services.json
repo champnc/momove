@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "741636819493",
+    "project_id": "momove-6460f",
+    "storage_bucket": "momove-6460f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741636819493:android:1a72bc8556da4a7447cdcc",
+        "android_client_info": {
+          "package_name": "com.champnc.momove"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741636819493-r5gte95bu81gustfjffri88t4ek2raev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxYzVjaWol3_LNgtdjgCr71u7mBELT-Jk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741636819493-r5gte95bu81gustfjffri88t4ek2raev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
