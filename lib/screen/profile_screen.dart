@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -14,8 +16,23 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child:
-      Text("Profile"),
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              "Notifications",
+              style: TextStyle(fontSize: 48.0,fontWeight: FontWeight.bold),
+            ),
+          ),
+          Divider(
+            height: 1.0,
+            thickness: 2.0,
+          ),
+        ],
+      ),
     );
   }
 }
