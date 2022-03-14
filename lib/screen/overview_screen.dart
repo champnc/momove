@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:momove/screen/detail_screen.dart';
 
-class OverviewScreen extends StatelessWidget {
+class OverviewScreen extends StatefulWidget {
   static const String routeName = "/Overview";
   final List<ListItem> items;
-
   static Route route() {
     return MaterialPageRoute(
       builder: (_) => OverviewScreen(
@@ -14,7 +14,54 @@ class OverviewScreen extends StatelessWidget {
     );
   }
 
-  const OverviewScreen({Key? key, required this.items}) : super(key: key);
+  OverviewScreen({Key? key, required this.items}) : super(key: key);
+
+  final DoubleHolder offset = DoubleHolder();
+
+  double getOffsetMethod() {
+    // print('getOffsetMethod : ' + offset.value.toString());
+    return offset.value;
+  }
+
+  void setOffsetMethod(double val) {
+    print('offset : ' + offset.value.toString());
+    offset.value = val;
+  }
+
+  @override
+  State<OverviewScreen> createState() => _OverviewScreenState();
+}
+
+class _OverviewScreenState extends State<OverviewScreen> {
+  late ScrollController controller;
+  void _scrollListener() {
+    widget.setOffsetMethod(controller.position.pixels);
+  }
+
+  void _forceScroll(double offset) {
+    controller.jumpTo(offset);
+    print('forceScroll to : ' + offset.toString());
+  }
+
+  Future<void> _refresh() {
+    return Future.delayed(
+      Duration(seconds: 1),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = ScrollController()..addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +69,7 @@ class OverviewScreen extends StatelessWidget {
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverAppBar(
-            backgroundColor: Theme.of(context).primaryColorDark,
+            backgroundColor: Theme.of(context).primaryColor,
             title: const Text("Overview"),
             pinned: false,
             floating: true,
@@ -34,29 +81,43 @@ class OverviewScreen extends StatelessWidget {
       body: MediaQuery.removePadding(
         context: context,
         removeTop: true,
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: GridView.custom(
-            gridDelegate: SliverQuiltedGridDelegate(
-              crossAxisCount: 4,
-              mainAxisSpacing: 4,
-              crossAxisSpacing: 4,
-              repeatPattern: QuiltedGridRepeatPattern.inverted,
-              pattern: [
-                const QuiltedGridTile(2, 2),
-                const QuiltedGridTile(1, 1),
-                const QuiltedGridTile(1, 1),
-                const QuiltedGridTile(1, 2),
-              ],
-            ),
-            childrenDelegate: SliverChildBuilderDelegate(
-                (context, index) => FittedBox(
-                      fit: BoxFit.fill,
-                      child: Image.asset(
-                        "images/eren.jpeg",
+        child: RefreshIndicator(
+          color: Theme.of(context).primaryColor,
+          onRefresh: _refresh,
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: GridView.custom(
+              key: PageStorageKey<String>("overview"),
+              gridDelegate: SliverQuiltedGridDelegate(
+                crossAxisCount: 4,
+                mainAxisSpacing: 4,
+                crossAxisSpacing: 4,
+                repeatPattern: QuiltedGridRepeatPattern.inverted,
+                pattern: [
+                  const QuiltedGridTile(2, 2),
+                  const QuiltedGridTile(1, 1),
+                  const QuiltedGridTile(1, 1),
+                  const QuiltedGridTile(1, 2),
+                ],
+              ),
+              childrenDelegate: SliverChildBuilderDelegate(
+                  (context, index) => GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return DetailScreen(
+                                _forceScroll, widget.getOffsetMethod());
+                          }));
+                        },
+                        child: FittedBox(
+                          fit: BoxFit.fill,
+                          child: Image.asset(
+                            "images/eren.jpeg",
+                          ),
+                        ),
                       ),
-                    ),
-                childCount: 20),
+                  childCount: 20),
+            ),
           ),
         ),
       ),
@@ -114,6 +175,10 @@ abstract class ListItem {
 
   /// The subtitle line, if any, to show in a list item.
   Widget buildSubtitle(BuildContext context);
+}
+
+class DoubleHolder {
+  double value = 0.0;
 }
 
 /// A ListItem that contains data to display a heading.

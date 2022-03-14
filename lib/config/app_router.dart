@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:momove/screen/detail_screen.dart';
 import 'package:momove/screen/home_screen.dart';
+import 'package:momove/screen/search_screen.dart';
 import 'package:momove/screen/setting_screen.dart';
 
 class AppRouter {
@@ -8,8 +9,8 @@ class AppRouter {
     switch (settings.name) {
       case HomeScreen.routeName:
         return HomeScreen.route();
-      case DetailScreen.routeName:
-        return DetailScreen.route();
+      case SearchScreen.routeName:
+        return SearchScreen.route();
       case SettingScreen.routeName:
         return SettingScreen.route();
       default:

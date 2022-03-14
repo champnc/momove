@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -198,7 +199,9 @@ class _SettingScreenState extends State<SettingScreen> {
                       style: OutlinedButton.styleFrom(
                           primary: Theme.of(context).primaryColor,
                           fixedSize: Size(240, 40)),
-                      onPressed: () {},
+                      onPressed: () {
+                        FirebaseCrashlytics.instance.crash();
+                      },
                       child: Text("Logout"),
                     ),
                   ),

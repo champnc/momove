@@ -3,6 +3,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:momove/screen/screens.dart';
+import 'package:momove/screen/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "/";
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     OverviewScreen(
       items: List<ListItem>.generate(10, (i) => HeadingItem("$i")),
     ),
-    const DetailScreen(),
+    const SearchScreen(),
     const ProfileScreen(),
     const SettingScreen(),
   ];
@@ -82,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // ),
       body: SizedBox.expand(
         child: PageView(
+          physics: const NeverScrollableScrollPhysics(),
           controller: _pageController,
           onPageChanged: (index) {
             setState(
@@ -94,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
+        selectedIconTheme: IconThemeData(size: 35.0),
         selectedItemColor: Colors.white,
         unselectedItemColor: Theme.of(context).primaryColorDark,
         type: BottomNavigationBarType.shifting,
@@ -124,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Badge(
                 badgeContent: const Text(
                   "10+",
-                  style: TextStyle(fontSize: 8.0),
+                  style: TextStyle(fontSize: 8.0,color: Colors.white),
                 ),
                 child: const Icon(Icons.notifications)),
             tooltip: "Notification",
