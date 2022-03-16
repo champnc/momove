@@ -112,7 +112,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                         child: FittedBox(
                           fit: BoxFit.fill,
                           child: Image.asset(
-                            "images/eren.jpeg",
+                            "assets/images/eren.jpeg",
                           ),
                         ),
                       ),
