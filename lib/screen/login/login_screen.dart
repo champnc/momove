@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:momove/screen/home_screen.dart';
+
+import '../../model/user.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String routeName = "/login";
+  static const String routeName = "/";
   const LoginScreen({Key? key}) : super(key: key);
 
   static Route route() {
@@ -16,6 +19,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  var user = User();
+
   @override
   Widget build(BuildContext context) {
     double getSmallDiameter(BuildContext context) =>
@@ -35,10 +40,10 @@ class _LoginScreenState extends State<LoginScreen> {
               height: getSmallDiameter(context),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                      colors: [Theme.of(context).primaryColor, Theme.of(context).primaryColorLight],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter)),
+                  gradient: LinearGradient(colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColorLight
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             ),
           ),
           Positioned(
@@ -58,10 +63,10 @@ class _LoginScreenState extends State<LoginScreen> {
               height: getBiglDiameter(context),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  gradient: LinearGradient(
-                      colors: [Theme.of(context).primaryColor, Theme.of(context).primaryColorLight],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter)),
+                  gradient: LinearGradient(colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColorLight
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             ),
           ),
           Positioned(
@@ -88,6 +93,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: <Widget>[
                       TextField(
+                        onChanged: (value) {
+                          user.email = value;
+                        },
                         decoration: InputDecoration(
                             icon: Icon(
                               Icons.email,
@@ -101,6 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             labelStyle: const TextStyle(color: Colors.grey)),
                       ),
                       TextField(
+                        onChanged: (value) {
+                          user.password = value;
+                        },
                         obscureText: true,
                         decoration: InputDecoration(
                             icon: Icon(
@@ -123,8 +134,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         margin: const EdgeInsets.fromLTRB(0, 0, 20, 10),
                         child: Text(
                           "FORGOT PASSWORD?",
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor, fontSize: 11),
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 11),
                         ))),
                 Container(
                   margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
@@ -141,7 +153,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: InkWell(
                               borderRadius: BorderRadius.circular(20),
                               splashColor: Colors.amber,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.popAndPushNamed(
+                                    context, HomeScreen.routeName);
+                              },
                               child: const Center(
                                 child: Text(
                                   "SIGN IN",
@@ -156,7 +171,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(20),
                               gradient: LinearGradient(
                                   colors: [
-                                    Theme.of(context).primaryColor, Theme.of(context).primaryColorLight
+                                    Theme.of(context).primaryColor,
+                                    Theme.of(context).primaryColorLight
                                   ],
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter)),
@@ -167,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mini: true,
                         elevation: 0,
                         child: const Image(
-                          image: AssetImage("assets/images/facebook2.png"),
+                          image: AssetImage("assets/images/eren.jpeg"),
                         ),
                       ),
                       FloatingActionButton(
@@ -175,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mini: true,
                         elevation: 0,
                         child: const Image(
-                          image: AssetImage("assets/images/twitter.png"),
+                          image: AssetImage("assets/images/eren.jpeg"),
                         ),
                       ),
                     ],

@@ -6,7 +6,7 @@ import 'package:momove/screen/screens.dart';
 import 'package:momove/screen/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String routeName = "/";
+  static const String routeName = "/home";
 
   static Route route() {
     return MaterialPageRoute(
