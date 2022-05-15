@@ -24,7 +24,6 @@ class OverviewScreen extends StatefulWidget {
   }
 
   void setOffsetMethod(double val) {
-    print('offset : ' + offset.value.toString());
     offset.value = val;
   }
 
@@ -40,12 +39,11 @@ class _OverviewScreenState extends State<OverviewScreen> {
 
   void _forceScroll(double offset) {
     controller.jumpTo(offset);
-    print('forceScroll to : ' + offset.toString());
   }
 
   Future<void> _refresh() {
     return Future.delayed(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
     );
   }
 
@@ -87,7 +85,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: GridView.custom(
-              key: PageStorageKey<String>("overview"),
+              key: const PageStorageKey<String>("overview"),
               gridDelegate: SliverQuiltedGridDelegate(
                 crossAxisCount: 4,
                 mainAxisSpacing: 4,

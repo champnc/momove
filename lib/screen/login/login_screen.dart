@@ -50,6 +50,14 @@ class _LoginScreenState extends State<LoginScreen> {
             left: -getBiglDiameter(context) / 4,
             top: -getBiglDiameter(context) / 4,
             child: Container(
+              width: getBiglDiameter(context),
+              height: getBiglDiameter(context),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColorLight
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
               child: const Center(
                 child: Text(
                   "Momove",
@@ -59,14 +67,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Colors.white),
                 ),
               ),
-              width: getBiglDiameter(context),
-              height: getBiglDiameter(context),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: LinearGradient(colors: [
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).primaryColorLight
-                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             ),
           ),
           Positioned(
@@ -147,6 +147,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: MediaQuery.of(context).size.width * 0.5,
                         height: 40,
                         child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              gradient: LinearGradient(
+                                  colors: [
+                                    Theme.of(context).primaryColor,
+                                    Theme.of(context).primaryColorLight
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter)),
                           child: Material(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.transparent,
@@ -167,15 +176,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: LinearGradient(
-                                  colors: [
-                                    Theme.of(context).primaryColor,
-                                    Theme.of(context).primaryColorLight
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter)),
                         ),
                       ),
                       FloatingActionButton(

@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        selectedIconTheme: IconThemeData(size: 35.0),
+        selectedIconTheme: const IconThemeData(size: 35.0),
         selectedItemColor: Colors.white,
         unselectedItemColor: Theme.of(context).primaryColorDark,
         type: BottomNavigationBarType.shifting,
